@@ -1,0 +1,11 @@
+/* ./assets/css/main.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .school_details {
+        @apply p-4 mx-auto bg-white rounded-xl shadow-lg mb-4;
+    }
+}
+
