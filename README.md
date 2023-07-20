@@ -1,6 +1,8 @@
 ## New Globe Frontend Assessment - Battery Maintenance app.
 This is a simple app that uses some local data to track field support for batteries. 
 
+Demo - https://codesandbox.io/p/github/acekyd/field-support/master
+
 ## Tools used
 - Nuxt 3
 - Tailwind CSS
@@ -40,32 +42,10 @@ pnpm run dev
 yarn dev
 ```
 
-## Production
-
-Build the application for production:
+## Testing
 
 ```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
+npm test
 ```
 
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+* NB: Testing is currently broken as a result of some Nuxt 3 features but I didn't want to delay and would continue to look into a solution.
