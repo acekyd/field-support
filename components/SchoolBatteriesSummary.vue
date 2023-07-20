@@ -27,7 +27,7 @@
 </template>
 
 <script setup>
-const schoolInformation = {};
+let schoolInformation = {};
 const batteryIssues = {};
 
 const getBatteryData = async () => {
