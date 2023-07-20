@@ -21,7 +21,7 @@
         </details> 
     </div>
 
-    <div v-if="sortedSchools.length < 1" class="text-center">
+    <div v-show="sortedSchools.length < 1" class="text-center">
         Fetching schools and battery data...
     </div>
 </template>
@@ -31,7 +31,7 @@ let schoolInformation = {};
 const batteryIssues = {};
 
 const getBatteryData = async () => {
-    const url = "http://localhost:3000/battery-data.json";
+    const url = "http://localhost:3000/battery-data.json"; //for flexibility in case url changes
     try {
         const data = await $fetch(url);
         return data;
@@ -122,32 +122,26 @@ const needsReplacement = (value) => {
     return false;
 }
 
-(async () => {
-    try {
-        const batteryData = await getBatteryData();
-        schoolInformation = processBatteryData(batteryData);
-    } catch (error) {
-        console.error('Failed to process battery data:', error);
-    }
-})();
-
-
-const consumptionData = computed(() => {
+const getConsumptionData = (information) => {
     const newData = {};
-    Object.keys(schoolInformation).forEach(key => {
+    Object.keys(information).forEach(key => {
         newData[key] = {};
         batteryIssues[key] = 0;
-        Object.keys(schoolInformation[key]).map(nestedKey => {
-            newData[key][nestedKey] = calculateBatteryDischarge(schoolInformation[key][nestedKey]);
+        Object.keys(information[key]).map(nestedKey => {
+            newData[key][nestedKey] = calculateBatteryDischarge(information[key][nestedKey]);
             if(needsReplacement(newData[key][nestedKey])) batteryIssues[key] += 1;
         })
     });
 
     return newData;
-})
+}
 
+const batteryData = await getBatteryData();
+schoolInformation = processBatteryData(batteryData);
+const consumptionData = getConsumptionData(schoolInformation);
 const sortedSchools = computed(() => {
     const sortedArray = Object.entries(batteryIssues).sort((a, b) => b[1] - a[1]);
     return sortedArray;
 })
+
 </script>

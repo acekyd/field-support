@@ -1,5 +1,14 @@
 ## New Globe Frontend Assessment - Battery Maintenance app.
-This is a simple app that uses some data to discover how they are being consumed. 
+This is a simple app that uses some local data to track field support for batteries. 
+
+## Tools used
+- Nuxt 3
+- Tailwind CSS
+
+## Key Design Choices and Assumptions
+- When batteries have the same charge on multiple readings, only the first timestamp is used to compare the discharge duration till a different charge value is added.
+-  Data about how many batteries per school are bad is stored differently from the actual processed data set.
+- Currently not using the employeeID for anything but kept it in the processing in case a new feature could be added.
 
 ## Setup
 
